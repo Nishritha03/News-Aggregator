@@ -12,41 +12,15 @@ Additionally, there is a simple front-end interface that allows users to display
     ----------------------------------------------------------------------------------------
 ## Installation
 
-### Setup
+### Setup For webscraping in the jupyter:
+1.**Installation**
+`!pip install requests bs4  pandas`
 
-1. **Clone the repository**:
+### Setup For Backend In the Vscode:
+2.**Installation**
+`pip install Flask Flask-RESTful Jinja2`
 
-   ```bash
-   git clone https://github.com/yourusername/news-aggregator.git
-   cd news-aggregator
-   ```
-
-2. **Create a virtual environment**:
-
-   ```bash
-   python -m venv venv
-   source `venv\Scripts\activate`
-   ```
-
-3. **Install the required packages**:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-   *Note: If `requirements.txt` does not exist, manually install the required packages:*
-
-   ```bash
-   pip install requests beautifulsoup4 pandas flask flask-restful textblob
-   ```
-
-4. **Run the scraper to fetch articles and save them to a CSV file**:
-
-   ```bash
-   python webscraping.py
-   ```
-
-5. **Run the Flask application**:
+3. **Run the Flask application**:
 
    ```bash
    python app.py
@@ -63,13 +37,21 @@ The front-end interface provides a simple way to view, search, and filter articl
 
 ## Testing the API with Postman
 
-1. **Install Postman**: [Download Postman](https://www.postman.com/downloads/)
-2. **Import the API collection**: You can import the API collection into Postman to test the endpoints.
-3. **Test the Endpoints**: Use the API endpoints described above to test different functionalities.
+1. **Install Postman**
+2.**defining the routes in the routes.py**
+3. **Testing the endpoints through the URL and retriving the data**
+
+## ScreenShots Of API
+![image](https://github.com/user-attachments/assets/c1fe83c0-8a8d-478a-9dde-2c98937d6cf2)
+![image](https://github.com/user-attachments/assets/7ce5fb5c-c6bd-420d-91d6-310614f0b580)
+![image](https://github.com/user-attachments/assets/a131c0c3-109f-449b-953c-6c0b052bdebd)
+
+
+
 
 ## Future Enhancements
 
-- Add support for more news sources.
+- Enhance the search Functionality
 - Implement user authentication and authorization.
 - Enhance the front-end with more features and better UI/UX.
 
