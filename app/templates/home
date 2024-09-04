@@ -1,1 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Aggregator</title>
+    <style>
+        /* Basic styling for the body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        /* Container to center content and set width */
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        /* Header styling */
+        header {
+            background: #b50d0d;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #ccc 1px solid;
+            text-align: center;
+        }
+        
+        /* Header title styling */
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        
+        /* Form styling */
+        .form-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        /* Input field styling */
+        .form-container input[type="text"],
+        .form-container input[type="date"] {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        
+        /* Submit button styling */
+        .form-container input[type="submit"] {
+            padding: 10px;
+            background-color: #d31a1a;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* Article box styling */
+        .article {
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        /* Article title styling */
+        .article h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        
+        /* Article content styling */
+        .article p {
+            margin: 10px 0;
+        }
+        
+        /* Link styling */
+        .article a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .article a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Latest News Articles</h1>
+        </div>
+    </header>
+    <div class="container">
+        <!-- Form for filtering articles by category and date range -->
+        <div class="form-container">
+            <input type="text" id="category" placeholder="Enter category">
+            <input type="date" id="start_date">
+            <input type="date" id="end_date">
+            <input type="submit" value="Search" onclick="searchArticles()">
+        </div>
+        <!-- Container where articles will be dynamically loaded -->
+        <div id="articles">
+            <!-- Articles will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Function to format date to a more readable format
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const date = new Date(dateString);
+            return date.toLocaleDateString(undefined, options);
+        }
+
+        // Function to fetch and display articles
+        function loadArticles(category = '', startDate = '', endDate = '') {
+            let url = '/articles';
+            const params = [];
+            
+            if (category) {
+                params.push(`category=${encodeURIComponent(category)}`);
+            }
+            if (startDate) {
+                params.push(`start_date=${encodeURIComponent(startDate)}`);
+            }
+            if (endDate) {
+                params.push(`end_date=${encodeURIComponent(endDate)}`);
+            }
+
+            if (params.length > 0) {
+                url += `?${params.join('&')}`;
+            }
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const articlesDiv = document.getElementById('articles');
+                    articlesDiv.innerHTML = ''; // Clear existing content
+
+                    // Check if articles are available
+                    if (data.length === 0) {
+                        articlesDiv.innerHTML = '<p>No articles found for this criteria.</p>';
+                        return;
+                    }
+
+                    // Sort articles by publication date (latest first)
+                    data.sort((a, b) => new Date(b.publication_date) - new Date(a.publication_date));
+
+                    // Create and append article elements
+                    data.forEach(article => {
+                        const articleDiv = document.createElement('div');
+                        articleDiv.classList.add('article');
+                        articleDiv.innerHTML = `
+                            <h2>${article.title}</h2>
+                            <p><strong>Date:</strong> ${formatDate(article.publication_date)}</p>
+                            <p>${article.summary}</p>
+                            <p><a href="${article.url}" target="_blank">Read more</a></p>
+                        `;
+                        articlesDiv.appendChild(articleDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching articles:', error);
+                });
+        }
+
+        // Function to search articles by category and date range
+        function searchArticles() {
+            const category = document.getElementById('category').value.trim();
+            const startDate = document.getElementById('start_date').value;
+            const endDate = document.getElementById('end_date').value;
+            loadArticles(category, startDate, endDate);
+        }
+
+        // Load all articles when the page is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            loadArticles(); // Load all articles initially
+        });
+    </script>
+</body>
+</html>
 
