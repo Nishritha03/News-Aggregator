@@ -8,10 +8,10 @@ This project involves web scraping articles from CNN and India Today , followed 
 It includes a RESTful API that offers endpoints to retrieve all articles, search by ID, and filter them based on date and category. 
 Additionally, there is a simple front-end interface that allows users to display and search through the articles efficiently.
 
-##Note:The WebScraping for this project is done in the Jupyter Notebook
+## Note:The WebScraping for this project is done in the Jupyter Notebook
     
     
-    ----------------------------------------------------------------------------------------
+  
 ## Installation
 
 ### Setup For webscraping in the jupyter:
