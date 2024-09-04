@@ -4,17 +4,13 @@ This project is a News Aggregator  that scrapes articles from CNN and India Toda
 
 ## Features
 
-- **Web Scraping**: Scrapes articles from CNN and India Today.
-- **Categorization**: Categorizes articles into predefined categories like Politics, Technology, Sports, etc.
-- **RESTful API**: Provides endpoints to retrieve all articles, search by ID, and filter by date and category.
-- **Front-End Interface**: A simple web interface to display and search articles.
+This project involves web scraping articles from CNN and India Today , followed by categorizing them into predefined categories such as Politics, Technology, and Sports. 
+It includes a RESTful API that offers endpoints to retrieve all articles, search by ID, and filter them based on date and category. 
+Additionally, there is a simple front-end interface that allows users to display and search through the articles efficiently.
 
+##Note:The WebScraping for this project is done in the Jupyter Notebook
+    ----------------------------------------------------------------------------------------
 ## Installation
-
-### Prerequisites
-
-- Python 3.x
-- pip (Python package installer)
 
 ### Setup
 
@@ -29,7 +25,7 @@ This project is a News Aggregator  that scrapes articles from CNN and India Toda
 
    ```bash
    python -m venv venv
-   source venv/bin/activate   # On Windows, use `venv\Scripts\activate`
+   source `venv\Scripts\activate`
    ```
 
 3. **Install the required packages**:
