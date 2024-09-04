@@ -9,6 +9,8 @@ It includes a RESTful API that offers endpoints to retrieve all articles, search
 Additionally, there is a simple front-end interface that allows users to display and search through the articles efficiently.
 
 ##Note:The WebScraping for this project is done in the Jupyter Notebook
+    
+    
     ----------------------------------------------------------------------------------------
 ## Installation
 
